@@ -1,6 +1,6 @@
 package Repository
 
-import Network.CoinPaprikaClient
+import network.CoinPaprikaClient
 import network.response.CoinDetailResponse
 import network.response.CoinListResponse
 import Util.Result

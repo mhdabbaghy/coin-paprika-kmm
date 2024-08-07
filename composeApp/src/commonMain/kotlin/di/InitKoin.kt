@@ -2,7 +2,7 @@ package di
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
-import coinDetailKoinModule
+import coin_detail.di.coinDetailModule
 
 fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {
@@ -11,7 +11,7 @@ fun initKoin(config: KoinAppDeclaration? = null) {
         modules(
             sharedModule,
             platformModule,
-            coinDetailKoinModule,
+            featureModules,
         )
     }
 }

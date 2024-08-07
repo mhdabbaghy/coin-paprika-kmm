@@ -2,18 +2,26 @@ package di
 
 import Repository.CoinRepository
 import Repository.CoinRepositoryImpl
-import org.koin.compose.viewmodel.dsl.viewModelOf
+import coin_detail.di.coinDetailModule
+import coin_list.di.coinListModule
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
-import coin_list.CoinListViewModel
-import Network.CoinPaprikaClient
+import network.CoinPaprikaClient
+import network.createHttpClient
 
 expect val platformModule: Module
 
 val sharedModule = module {
-    singleOf(::CoinRepositoryImpl).bind<CoinRepository>()
+    singleOf(::createHttpClient)
     singleOf(::CoinPaprikaClient)
-    viewModelOf(::CoinListViewModel)
+    singleOf(::CoinRepositoryImpl).bind<CoinRepository>()
+}
+
+val featureModules = module {
+    includes(
+        coinDetailModule,
+        coinListModule,
+    )
 }
