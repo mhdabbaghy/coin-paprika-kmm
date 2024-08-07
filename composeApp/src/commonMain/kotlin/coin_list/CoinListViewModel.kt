@@ -1,7 +1,7 @@
 package coin_list
 
-import Repository.CoinRepository
-import Util.Result
+import repository.CoinRepository
+import util.Result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow

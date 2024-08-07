@@ -1,9 +1,9 @@
-package Repository
+package repository
 
 import network.CoinPaprikaClient
 import network.response.CoinDetailResponse
 import network.response.CoinListResponse
-import Util.Result
+import util.Result
 
 interface CoinRepository {
 

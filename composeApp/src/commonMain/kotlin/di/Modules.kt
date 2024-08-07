@@ -1,7 +1,7 @@
 package di
 
-import Repository.CoinRepository
-import Repository.CoinRepositoryImpl
+import repository.CoinRepository
+import repository.CoinRepositoryImpl
 import coin_detail.di.coinDetailModule
 import coin_list.di.coinListModule
 import org.koin.core.module.Module
