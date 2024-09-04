@@ -1,6 +1,6 @@
-package coin_detail.di
+package feature.coin_detail.di
 
-import coin_detail.CoinDetailViewModel
+import feature.coin_detail.CoinDetailViewModel
 import org.koin.compose.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

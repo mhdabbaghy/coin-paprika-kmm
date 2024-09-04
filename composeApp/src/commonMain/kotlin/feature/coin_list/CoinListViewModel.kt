@@ -1,6 +1,6 @@
-package coin_list
+package feature.coin_list
 
-import repository.CoinRepository
+import data.repository.CoinRepository
 import util.Result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

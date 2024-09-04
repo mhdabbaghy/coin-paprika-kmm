@@ -1,62 +1,73 @@
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavArgumentBuilder
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import coin_detail.CoinDetailRoute
-import coin_list.CoinListRoute
-import coin_list.CoinListViewModel
+import navigation.AppNavHost
+import navigation.TopLevelDestination
 import org.koin.compose.KoinContext
-import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 
-@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun App() {
+
+    val appState = rememberAppState()
+
     MaterialTheme {
         KoinContext {
 
-            val navController = rememberNavController()
-            NavHost(
-                navController = navController,
-                startDestination = "coin_list",
+            Scaffold(
+                bottomBar = {
+                    BottomBar(
+                        currentDestination = appState.currentDestination,
+                        onTopLevelDestinationClicked = appState::navigateToTopLevelDestination
+                    )
+                }
             ) {
-                composable(
-                    route = "coin_list",
-                ) {
-                    val viewModel: CoinListViewModel = koinViewModel()
-                    CoinListRoute(
-                        viewModel = viewModel,
-                        onCoinClick = {
-                            navController.navigate(route = "coin_detail/$it")
-                        }
-                    )
-                }
-
-
-                composable(
-                    route = "coin_detail/{id}",
-                    arguments = listOf(
-                        navArgument(name = "id") {
-                            type = NavType.StringType
-                            nullable = false
-                        },
-                    )
-                ) {
-
-                    val id = it.arguments!!.getString("id")!!
-
-                    CoinDetailRoute(
-                        onBackClick = { navController.navigateUp() },
-                        id = id,
-                    )
-
-                }
+                AppNavHost(
+                    navController = appState.navController,
+                    modifier = Modifier.padding(it),
+                )
             }
-
         }
     }
 }
+
+@Composable
+fun BottomBar(
+    currentDestination: NavDestination?,
+    onTopLevelDestinationClicked: (TopLevelDestination) -> Unit,
+) {
+    BottomNavigation {
+        for (destination in TopLevelDestination.entries) {
+            val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
+            BottomNavigationItem(
+                selected = selected,
+                onClick = {
+                    onTopLevelDestinationClicked(destination)
+                },
+                icon = {
+                    Icon(
+                        imageVector = if (selected) destination.selectedIcon else destination.unselectedIcon,
+                        contentDescription = null,
+                    )
+                },
+                label = {
+                    Text(text = destination.getTitle())
+                }
+            )
+        }
+    }
+}
+
+private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
+    this?.hierarchy?.any {
+        it.route?.equals(destination.route, true) ?: false
+    } ?: false

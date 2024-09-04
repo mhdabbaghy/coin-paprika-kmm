@@ -1,4 +1,4 @@
-package coin_list.ui
+package feature.coin_list.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import network.response.CoinListResponse
+import data.network.response.CoinListResponse
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -62,11 +62,9 @@ fun CoinItemPreview() {
                 coin = CoinListResponse(
                     id = "BTC-Bitcoin",
                     isActive = true,
-                    isNew = true,
                     name = "Bitcoin",
                     rank = 1,
                     symbol = "BTC",
-                    type = "Coin"
                 ),
                 onCoinClick = {}
             )

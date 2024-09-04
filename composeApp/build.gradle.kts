@@ -36,7 +36,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.koin.android)
-            implementation(libs.koin.androidx.compose)
+//            implementation(libs.koin.androidx.compose)
 
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.ktor.client.okhttp)

@@ -1,4 +1,4 @@
-package coin_detail.ui_components
+package feature.coin_detail.ui_components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import network.response.CoinDetailResponse
+import data.network.response.CoinDetailResponse
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 

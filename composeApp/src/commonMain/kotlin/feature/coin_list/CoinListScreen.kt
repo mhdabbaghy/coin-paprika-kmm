@@ -1,6 +1,5 @@
-package coin_list
+package feature.coin_list
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,12 +12,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import coin_list.ui.CoinItem
+import feature.coin_list.ui.CoinItem
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun CoinListRoute(
-    viewModel: CoinListViewModel,
-    onCoinClick: (String) -> Unit
+    onCoinClick: (String) -> Unit,
+    viewModel: CoinListViewModel = koinViewModel(),
 ) {
 
     val state by viewModel.uiState.collectAsState()

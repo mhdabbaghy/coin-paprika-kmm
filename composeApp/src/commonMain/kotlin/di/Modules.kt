@@ -1,21 +1,18 @@
 package di
 
-import repository.CoinRepository
-import repository.CoinRepositoryImpl
-import coin_detail.di.coinDetailModule
-import coin_list.di.coinListModule
+import data.repository.CoinRepository
+import data.repository.CoinRepositoryImpl
+import feature.coin_detail.di.coinDetailModule
+import feature.coin_list.di.coinListModule
+import feature.home.di.homeModule
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
-import network.CoinPaprikaClient
-import network.createHttpClient
 
 expect val platformModule: Module
 
 val sharedModule = module {
-    singleOf(::createHttpClient)
-    singleOf(::CoinPaprikaClient)
     singleOf(::CoinRepositoryImpl).bind<CoinRepository>()
 }
 
@@ -23,5 +20,6 @@ val featureModules = module {
     includes(
         coinDetailModule,
         coinListModule,
+        homeModule,
     )
 }

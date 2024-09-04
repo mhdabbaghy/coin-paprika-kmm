@@ -1,6 +1,6 @@
-package coin_list
+package feature.coin_list
 
-import network.response.CoinListResponse
+import data.network.response.CoinListResponse
 
 sealed interface CoinListUiState {
     data object Loading : CoinListUiState

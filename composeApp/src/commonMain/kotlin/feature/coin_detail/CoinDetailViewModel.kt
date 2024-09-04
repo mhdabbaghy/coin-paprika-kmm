@@ -1,7 +1,7 @@
-package coin_detail
+package feature.coin_detail
 
-import network.response.CoinDetailResponse
-import repository.CoinRepository
+import data.network.response.CoinDetailResponse
+import data.repository.CoinRepository
 import util.Result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -7,7 +7,5 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 actual val platformModule: Module = module {
-    single {
-        Darwin.create()
-    }.bind(HttpClientEngine::class)
+
 }
